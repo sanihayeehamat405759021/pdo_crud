@@ -13,6 +13,7 @@ $db = $objDb->database;
   <body>
 
 <?php
+
 $query = $db->prepare("SELECT * FROM member WHERE id = :id");
 $query->execute([ "id" => $_GET['id'],]);
 if($query->rowCount() > 0){
@@ -21,6 +22,8 @@ if($query->rowCount() > 0){
 }else{
   echo "Record not found.";
 }
+
+
  ?>
 
 

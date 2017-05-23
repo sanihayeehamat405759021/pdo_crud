@@ -14,6 +14,7 @@ $db = $objDb->database;
 
     <?php
     echo "Hello PDO";
+
      ?>
      <br/>
      <a href="create.php">สร้าง Member</a>
@@ -32,6 +33,8 @@ $db = $objDb->database;
 <?php
 $query = $db->prepare("SELECT * FROM member");
 $query->execute();//ประมวลผลคำสั่ง sql
+
+
 if($query->rowCount() > 0){ #rowCount เช็คจำนวนแถวที่ได้มา
   while($row = $query->fetch(PDO::FETCH_ASSOC)){//ดึงข้อมูลแต่ละรอบใส่ใน $row
  ?>
@@ -40,7 +43,9 @@ if($query->rowCount() > 0){ #rowCount เช็คจำนวนแถวที
            <td><?=$row['firstname'].' '.$row['lastname']?></td>
            <td><?=$row['status']?></td>
            <td>
-            <a href="#">ดู</a> | <a href="#">แก้ไข</a> | <a href="#">ลบ</a>
+            <a href="view.php?id=<?=$row['id']?>">ดู</a> |
+            <a href="update.php?id=<?=$row['id']?>">แก้ไข</a> |
+            <a href="delete.php?id=<?=$row['id']?>" onclick="return confirm('คุณแน่ใจที่จะลบมัน?');">ลบ</a>
            </td>
          </tr>
 <?php
